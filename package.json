@@ -1,0 +1,22 @@
+{
+  "name": "on-location-frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "buildSign": "browserify src/main.js -o bundle.js",
+    "watchSign": "watchify src/main.js -o bundle.js",
+    "dev-server": "live-server",
+    "dev": "run-all \"npm run watchSign\" \"npm run dev-server\""
+  },
+  "keywords": [],
+  "author": "Craig Fell, Wendy Parsons, Hedim Ramirez",
+  "license": "ISC",
+  "devDependencies": {
+    "browserify": "^16.2.2",
+    "live-server": "^1.2.0",
+    "run-all": "^1.0.1",
+    "watchify": "^3.11.0"
+  }
+}
