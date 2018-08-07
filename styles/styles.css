@@ -2,3 +2,8 @@
   transform: scale(1.05);
   cursor: pointer;
 }
+
+.img-fluid {
+  margin: auto;
+  display: block;
+}
