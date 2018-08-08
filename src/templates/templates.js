@@ -66,7 +66,7 @@ const registerAlertTemplate = () => {
 
 const movieCardTemplate = (id, poster, title, plot, time) => {
   return `
-    <div class="card m-2 col-5 col-md-3 shadow p-0" href="#movies/${id}">
+    <div class="card m-2 col-sm-3 col-md-2 shadow p-0" href="#movies/${id}">
       <img class="card-img-top" src="${poster}" alt="Card image cap" movie-id=${id}>
       <div class="card-body">
         <h5 class="card-title">${title}</h5>
