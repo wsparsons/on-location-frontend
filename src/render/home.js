@@ -1,6 +1,7 @@
 const templates = require('../templates/templates')
 const moment = require('moment')
 
+
 function allMovies() {
   axios.get(`${baseURL}/api/movies`)
     .then(response => {
@@ -12,7 +13,6 @@ function allMovies() {
 
 function renderAllMovie(movies) {
   let accumulator = ''
-
   movies.forEach(movie => {
     let createdTime = moment(movie.created_at).toNow(true)
     let updatedTime = moment(movie.updated_at).toNow(true)
@@ -37,7 +37,6 @@ function oneMovie(movieId) {
   axios.get(`${baseURL}/api/movies/${movieId}`)
     .then(response => {
       let movieInfo = response.data.data[0]
-      console.log(movieInfo);
       renderOneMovie(movieInfo)
     })
 }
@@ -49,5 +48,6 @@ function renderOneMovie(movie) {
 
 
 module.exports = {
-  allMovies
+  allMovies,
+  renderAllMovie
 }
