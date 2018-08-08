@@ -18,5 +18,8 @@
     "live-server": "^1.2.0",
     "run-all": "^1.0.1",
     "watchify": "^3.11.0"
+  },
+  "dependencies": {
+    "moment": "^2.22.2"
   }
 }
