@@ -1,7 +1,11 @@
+window.baseURL = 'http://localhost:5000'
+
 const loginButton = document.getElementById('login-button')
 const registerButton = document.getElementById('register-button')
 const templates = require('./templates/templates')
 const searchButton = document.getElementById('button-search')
+
+const renderHomePage = require('./render/home')
 
 loginButton.addEventListener('click', loginForm)
 registerButton.addEventListener('click', registerForm)
@@ -10,14 +14,15 @@ registerButton.addEventListener('click', registerForm)
 // })
 
 function homeView () {
+  renderHomePage.allMovies()
 
-    const token = localStorage.getItem('token')
-    if (!token) {
-        // Render homepage view only if there is no token.
-        // renderHome()
-    } else {
-        // renderHome(userId)
-    }
+    // const token = localStorage.getItem('token')
+    // if (!token) {
+    //     // Render homepage view only if there is no token.
+    //     // renderHome()
+    // } else {
+    //     // renderHome(userId)
+    // }
 
 }
 

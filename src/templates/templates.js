@@ -66,8 +66,8 @@ const registerAlertTemplate = () => {
 
 const movieCardTemplate = (id, poster, title, plot, time) => {
   return `
-    <div class="card m-2 col-5 col-lg-3 shadow p-0" movie-id=${id}>
-      <img class="card-img-top" src="${poster}" alt="Card image cap">
+    <div class="card m-2 col-5 col-md-3 shadow p-0" href="#movies/${id}">
+      <img class="card-img-top" src="${poster}" alt="Card image cap" movie-id=${id}>
       <div class="card-body">
         <h5 class="card-title">${title}</h5>
         <p class="card-text">${plot}</p>
@@ -78,9 +78,29 @@ const movieCardTemplate = (id, poster, title, plot, time) => {
     </div>`
 }
 
+const movieInfoTemplate = (movieInfo) => {
+  return `
+    <div class="row align-items-center pb-2" movie-id=${movieInfo.id}>
+      <div class="col-4">
+        <img class="img-fluid shadow" src="${movieInfo.poster}" alt="Frozen">
+      </div>
+      <div class="col-8">
+        <h4 class="font-weight-bold">Title: <span class="font-weight-normal">${movieInfo.title}</span></h4>
+        <hr>
+        <p class="font-weight-bold">Year: <span class="font-weight-normal">${movieInfo.year}</span></p>
+        <p class="font-weight-bold">Rated: <span class="font-weight-normal">${movieInfo.rated}</span></p>
+        <p class="font-weight-bold">Genre: <span class="font-weight-normal">${movieInfo.genre}</span></p>
+        <p class="font-weight-bold">Director: <span class="font-weight-normal">${movieInfo.director}</span></p>
+        <p class="font-weight-bold">Plot: <span class="font-weight-normal">${movieInfo.plot}</span></p>
+      </div>
+    </div>`
+}
+
 module.exports = {
   loginTemplate,
   registerTemplate,
   loginAlertTemplate,
-  registerAlertTemplate
+  registerAlertTemplate,
+  movieCardTemplate,
+  movieInfoTemplate
 }
