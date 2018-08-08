@@ -1,10 +1,42 @@
 const loginButton = document.getElementById('login-button')
 const registerButton = document.getElementById('register-button')
-
 const templates = require('./templates/templates')
+const searchButton = document.getElementById('button-search')
 
 loginButton.addEventListener('click', loginForm)
 registerButton.addEventListener('click', registerForm)
+// searchButton.addEventListener('click', () => {
+//   window.location.hash = '#search'
+// })
+
+function homeView () {
+
+    const token = localStorage.getItem('token')
+    if (!token) {
+        // Render homepage view only if there is no token.
+        // renderHome()
+    } else {
+        // renderHome(userId)
+    }
+
+}
+
+homeView()
+window.onhashchange = () => homeView()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 function renderMain(){
@@ -16,7 +48,7 @@ function renderMain(){
 function loginForm() {
   document.querySelector('title').textContent = 'Sign In'
   document.querySelector('main').classList.add('d-none')
-  
+
   const container = document.getElementById('form-container')
   container.innerHTML = templates.loginTemplate()
 
