@@ -1,4 +1,5 @@
 window.baseURL = 'http://localhost:5000'
+const search = require('./render/search')
 
 const loginButton = document.getElementById('login-button')
 const registerButton = document.getElementById('register-button')
@@ -23,6 +24,9 @@ function homeView () {
     // } else {
     //     // renderHome(userId)
     // }
+
+
+    search.renderSearchBar()
 
 }
 
