@@ -16,3 +16,7 @@ img.card-img {
 .row > div[class*='col-md'] {
   display: flex;
 }
+
+#noresults-alert {
+  width: 300px;
+}

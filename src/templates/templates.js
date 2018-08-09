@@ -6,11 +6,11 @@ const loginTemplate = () => {
       <form id="login">
         <div class="form-group">
           <label for="login-email">Email Address</label>
-          <input type="email" class="form-control" id="login-email" aria-describedby="emailHelp" placeholder="Enter email" required="required">
+          <input type="email" class="form-control" name="email" id="login-email" aria-describedby="emailHelp" placeholder="Enter email" required="required">
         </div>
         <div class="form-group">
           <label for="login-password">Password</label>
-          <input type="password" class="form-control" id="login-password" placeholder="Enter Password" required="required">
+          <input type="password" class="form-control" name="password" id="login-password" placeholder="Enter Password" required="required">
         </div>
         <button type="submit" class="btn btn-primary" id="sumbit-login">Login</button>
         <button type="button" class="btn btn-danger" id="cancel-login">Cancel</button>
@@ -104,11 +104,56 @@ const sceneCardTemplate = (movieid, id, description, address, photo) => {
 
 }
 
+const searchBar = () => {
+  return `
+  <div class="row">
+    <div class="col p-4">
+      <h3>Search for a movie.</h3>
+      <hr>
+
+      <div class="input-group mb-3">
+          <input id="searchMovieTitle" type="search" class="form-control" placeholder="Enter Movie Title" aria-label="Movie Title" aria-describedby="button-search">
+          <div class="input-group-append">
+            <a id="searchMovieButton" class="btn btn-outline-secondary" href="/#search">Search</a>
+          </div>
+      </div>
+
+      <div id="noresults-alert" class="alert alert-danger m-2 p-2 d-none text-center mx-auto" role="alert">
+      <i class="fas fa-exclamation-circle"></i> Sorry No Results.
+      </div>
+
+
+
+    </div>
+  </div>
+  `
+}
+
+const omdbBar = () => {
+  return `
+  <div class="row">
+    <div class="col p-4">
+      <h3>Add a movie from OMDB.</h3>
+      <hr>
+      <div class="input-group mb-3">
+        <input type="search" class="form-control" placeholder="Enter Movie Title" aria-label="Movie Title" aria-describedby="button-search">
+        <div class="input-group-append">
+          <a class="btn btn-outline-primary" href="/#search">Search Movie</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  `
+}
+
+
 module.exports = {
   loginTemplate,
   registerTemplate,
   loginAlertTemplate,
   registerAlertTemplate,
   movieCardTemplate,
-  movieInfoTemplate
+  movieInfoTemplate,
+  searchBar,
+  omdbBar
 }
