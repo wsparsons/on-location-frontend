@@ -100,11 +100,11 @@ const movieInfoTemplate = (movieInfo) => {
     </div>`
 }
 
-const sceneCardTemplate = (scene, time) => {
+const sceneCardTemplate = (scene, photo, time) => {
   return `
-    <div class="col-md-3">
+    <div class="col-lg-3 col-md-4 col-sm-6">
       <div class="card m-1 shadow p-0" id="scene${scene.id}" data="${scene.id}">
-        <img class="card-img" src="" alt="Card image cap">
+        <img class="card-img" src="${photo}" alt="Card image cap">
         <div class="card-body">
           <p class="card-text"><span class="font-weight-bold">Description: </span>${scene.description}</p>
           <p class="card-text"><span class="font-weight-bold">Address: </span>${scene.address}</p>

@@ -64,18 +64,42 @@ function getAllScenes(oneMovieId) {
 }
 
 function renderAllScenes(scenes) {
-  // console.log(scenes);
-  let accumulator = ''
-  scenes.forEach(scene => {
-    console.log(scene);
-    let createdTime = moment(scene.created_at).toNow(true)
-    let updatedTime = moment(scene.updated_at).toNow(true)
+    const promises = scenes.map(scene => {
+      return axios.get(`${baseURL}/api/movies/${scene.movie_id}/scene/${scene.id}/photos`)
+    })
 
-    accumulator += templates.sceneCardTemplate(scene, createdTime)
+    Promise.all(promises)
+      .then(response => {
+        const photoURLs = response.map(query => query.data.data[0].photo)
 
-  })
+        return scenes.map((scene, i) => {
+          let createdTime = moment(scene.created_at).toNow(true)
+          return templates.sceneCardTemplate(scene, photoURLs[i], createdTime)
+        })
+      })
+      .then(response => {
+        document.querySelector('#allScenesCards').innerHTML = response.join('')
+      })
 
-  document.querySelector('#allScenesCards').innerHTML = accumulator
+    //   axios.get(`${baseURL}/api/movies/${scene.movie_id}/scene/${scene.id}/photos`)
+    //     .then(response => {
+    //       photoURL = response.data.data[0].photo
+    //       // scene.photo = photoURL
+    //       // return scene.photo
+    //     })
+    //     // console.log(photoURL);
+    //     .then(response => {
+    //       let createdTime = moment(scene.created_at).toNow(true)
+    //       let updatedTime = moment(scene.updated_at).toNow(true)
+    //
+    //       return accumulator += templates.sceneCardTemplate(scene, photoURL, createdTime)
+    //
+    //     })
+    //
+    // })
+    //
+    // document.querySelector('#allScenesCards').innerHTML = accumulator
+  // })
 }
 
 module.exports = {
