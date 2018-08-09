@@ -117,6 +117,7 @@ function loginForm() {
 }
 
 function registerForm() {
+  console.log('IN REGISTER FORM')
   document.querySelector('title').textContent = 'Register'
   document.querySelector('main').classList.add('d-none')
   const container = document.getElementById('form-container')
@@ -125,6 +126,35 @@ function registerForm() {
   const cancelRegister = document.getElementById('cancel-register')
   cancelRegister.addEventListener('click', renderMain)
 
-  // const registerFormSubmit = document.getElementById('register')
-  // loginForm.addEventListener('submit', verify)
+  const registerFormSubmit = document.getElementById('register')
+  registerFormSubmit.addEventListener('submit', (event) => {
+    event.preventDefault()
+    const body = {
+      first_name: event.target.firstName.value,
+      last_name: event.target.lastName.value,
+      email: event.target.registerEmail.value,
+      password: event.target.registerPassword.value
+    }
+    console.log("IN REGISTER PASSING IN: ", body)
+    return axios.post(`${baseURL}/api/users/signup`, body)
+      .then(res => {
+        console.log(res)
+        localStorage.setItem('token', res.data.token)
+        return res.data.token
+      })
+      .then(token => {
+        document.querySelector('main').classList.remove('d-none')
+        document.querySelector('#login-span').setAttribute("style", "display: none")
+        document.querySelector('#logout-span').removeAttribute("style")
+        renderMain()
+        homeView()
+      })
+      .catch(e => {
+        console.log(e)
+        let alertspan = document.querySelector('#register-alert')
+        alertspan.innerHTML += templates.registerAlertTemplate()
+        setTimeout(() => alertspan.innerHTML = '', 4000)
+      })
+
+  })
 }
