@@ -64,17 +64,17 @@ const registerAlertTemplate = () => {
   </div>`
 }
 
-const movieCardTemplate = (id, poster, title, plot, time) => {
+const movieCardTemplate = (movie, time) => {
   return `
     <div class="col-lg-3 col-md-4 col-sm-6">
-      <div class="card m-1 shadow p-0" href="#movies/${id}">
-        <img class="card-img-top" src="${poster}" alt="Card image cap" movie-id=${id}>
+      <div class="card m-1 shadow p-0" href="#movies/${movie.id}">
+        <img class="card-img-top" src="${movie.poster}" alt="Card image cap" id="movie${movie.id}" data="${movie.id}">
         <div class="card-body">
-          <h5 class="card-title">${title}</h5>
-          <p class="card-text">${plot}</p>
+          <h5 class="card-title">${movie.title}</h5>
+          <p class="card-text">${movie.plot}</p>
         </div>
         <div class="card-footer">
-          <small class="text-muted">Last updated ${time} ago</small>
+          <small class="text-muted">Last updated ${movie.time} ago</small>
         </div>
       </div>
     </div>`
@@ -82,7 +82,7 @@ const movieCardTemplate = (id, poster, title, plot, time) => {
 
 const movieInfoTemplate = (movieInfo) => {
   return `
-    <div class="row align-items-center pb-2" id=${movieInfo.id}>
+    <div class="row align-items-center pb-2" id="movie${movieInfo.id}">
       <div class="col-4">
         <img class="img-fluid shadow" src="${movieInfo.poster}" alt="Frozen">
       </div>
@@ -94,7 +94,7 @@ const movieInfoTemplate = (movieInfo) => {
         <p class="font-weight-bold">Genre: <span class="font-weight-normal">${movieInfo.genre}</span></p>
         <p class="font-weight-bold">Director: <span class="font-weight-normal">${movieInfo.director}</span></p>
         <p class="font-weight-bold">Plot: <span class="font-weight-normal">${movieInfo.plot}</span></p>
-        <button type="button" class="btn btn-outline-info btn-sm" id="view-scenes">View Scenes</button>
+        <button type="button" class="btn btn-outline-success btn-sm" id="view-scenes" data="${movieInfo.id}">View Scenes</button>
         <button type="button" class="btn btn-outline-primary btn-sm" id="add-scene">Add Scene</button>
       </div>
     </div>`
@@ -103,11 +103,13 @@ const movieInfoTemplate = (movieInfo) => {
 const sceneCardTemplate = (scene, time) => {
   return `
     <div class="col-md-3">
-      <div class="card m-1 shadow p-0" id="${scene.id}">
+      <div class="card m-1 shadow p-0" id="scene${scene.id}" data="${scene.id}">
         <img class="card-img" src="" alt="Card image cap">
         <div class="card-body">
           <p class="card-text"><span class="font-weight-bold">Description: </span>${scene.description}</p>
           <p class="card-text"><span class="font-weight-bold">Address: </span>${scene.address}</p>
+          <button data="${scene.id}" type="button" class="btn btn-outline-info btn-sm">Edit</button>
+          <button data="${scene.id}" type="button" class="btn btn-outline-danger btn-sm" >Delete</button>
         </div>
         <div class="card-footer">
           <small class="text-muted">Last updated ${time} ago</small>

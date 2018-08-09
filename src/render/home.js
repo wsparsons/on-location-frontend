@@ -16,7 +16,7 @@ function renderAllMovie(movies) {
     let createdTime = moment(movie.created_at).toNow(true)
     let updatedTime = moment(movie.updated_at).toNow(true)
 
-    accumulator += templates.movieCardTemplate(movie.id, movie.poster, movie.title, movie.plot, createdTime)
+    accumulator += templates.movieCardTemplate(movie, createdTime)
   })
 
   document.querySelector('#allMoviesCards').innerHTML = accumulator
@@ -26,7 +26,7 @@ function renderAllMovie(movies) {
   allMoviesImages.forEach(movieImage => {
     movieImage.addEventListener('click', function(event) {
       event.preventDefault()
-      let movieId = movieImage.getAttribute('movie-id')
+      let movieId = movieImage.getAttribute('data')
       oneMovie(movieId)
     })
   })
@@ -38,15 +38,6 @@ function oneMovie(movieId) {
       let movieInfo = response.data.data[0]
 
       renderOneMovie(movieInfo)
-      // let oneMovieId = movieInfo.id
-      // let viewScenesButton = document.querySelector('#view-scenes')
-      // viewScenesButton.addEventListener('click', function(event){
-      //   event.preventDefault()
-      //   // console.log('hello');
-      //   // let oneMovieId = event.target.parentNode.parentNode.id
-      //   // getAllScenes(oneMovieId)
-      //   console.log(oneMovieId);
-      // })
     })
 }
 
@@ -56,8 +47,7 @@ function renderOneMovie(movie) {
 
   let viewScenesButton = document.querySelector('#view-scenes')
   viewScenesButton.addEventListener('click', function() {
-    // console.log('hello');
-    let oneMovieId = event.target.parentNode.parentNode.id
+    let oneMovieId = viewScenesButton.getAttribute('data')
     // console.log(oneMovieId);
     getAllScenes(oneMovieId)
   })
@@ -82,6 +72,7 @@ function renderAllScenes(scenes) {
     let updatedTime = moment(scene.updated_at).toNow(true)
 
     accumulator += templates.sceneCardTemplate(scene, createdTime)
+
   })
 
   document.querySelector('#allScenesCards').innerHTML = accumulator
