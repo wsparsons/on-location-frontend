@@ -160,7 +160,28 @@ const omdbBar = () => {
   `
 }
 
-
+const sceneAddTemplate = () => {
+  return `
+  <div class="col-6 p-4">
+    <h3>Add Scene</h3>
+    <hr>
+      <form id="addSceneForm">
+        <div class="form-group">
+          <label for="sceneDescription">Description</label>
+          <input type="text" class="form-control" name="sceneDescription" id="sceneDescription" aria-describedby="emailHelp" required>
+        </div>
+          <div class="form-group">
+            <label for="sceneLocation">Location</label>
+            <input type="text" class="form-control" name="sceneLocation" id="sceneLocation" placeholder="addess" required>
+        </div>
+            <button type="submit" class="btn btn-primary" id="submit-login">Submit</button>
+            <button type="button" class="btn btn-danger" id="cancel-login">Cancel</button>
+      </form>
+          <span id="addScene"></span>
+        </div>`
+    }
+    
+    
 module.exports = {
   loginTemplate,
   registerTemplate,
@@ -170,5 +191,6 @@ module.exports = {
   movieInfoTemplate,
   searchBar,
   omdbBar,
-  sceneCardTemplate
+  sceneCardTemplate,
+  sceneAddTemplate
 }
