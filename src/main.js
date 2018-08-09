@@ -41,11 +41,11 @@ function homeView () {
         homeView()
       })
     }
+    search.renderSearchBar()
   }
 
-    search.renderSearchBar()
+    
 
-}
 
 
 homeView()
