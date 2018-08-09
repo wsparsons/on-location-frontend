@@ -1,7 +1,8 @@
 const omdb = require('omdb-js')('537f0607')
 const searchTarget = document.getElementById('searchbar')
 const templates = require('../templates/templates')
-const request = require('../requests/search.js')
+const search = require('../requests/search')
+const request = require('../requests/movies')
 const renderAllMovie = require('../render/home').renderAllMovie
 const renderOneMovie = require('../render/home').renderOneMovie
 
@@ -14,7 +15,7 @@ function renderSearchBar() {
   searchButton.addEventListener('click', (event) => {
     event.preventDefault()
     let searchString = escape(searchMovieTitle.value)
-    request.localSearch(searchString)
+    search.localSearch(searchString)
   })
 }
 
@@ -72,12 +73,14 @@ function renderOmdbSearch() {
                 title: result.Title,
                 imdbID: result.imdbID,
                 year: result.Year,
+                rated: result.Rated,
                 genre: result.Genre,
                 director: result.Director,
                 plot: result.Plot,
                 poster: result.Poster
             }
             // Add it to the database, then render it.
+            request.addMovie(omdbMovie)
 
 
           })
