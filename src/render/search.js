@@ -47,8 +47,8 @@ function renderOmdbSearch() {
       function renderOmdbMovies(movies) {
         let accumulator = ''
         movies.forEach(movie => {
-          let createdTime = ''
-          let updatedTime = ''
+          let createdTime
+          let updatedTime
 
           accumulator += templates.movieCardTemplate(movie, createdTime)
         })
@@ -70,41 +70,22 @@ function renderOmdbSearch() {
           omdb.getSpecificMovie('', searchId).then(result => {
             // result is a single OMDB API json object json matching the year and title, with "short" plot summary
             let omdbMovie = {
-                title: result.Title,
-                imdbID: result.imdbID,
-                year: result.Year,
-                rated: result.Rated,
-                genre: result.Genre,
-                director: result.Director,
-                plot: result.Plot,
-                poster: result.Poster
+              title: result.Title,
+              imdbID: result.imdbID,
+              year: result.Year,
+              rated: result.Rated,
+              genre: result.Genre,
+              director: result.Director,
+              plot: result.Plot,
+              poster: result.Poster
             }
             // Add it to the database, then render it.
             request.addMovie(omdbMovie)
-
-
           })
-
-
-
-
-
         })
       })
-
-      //return omdbResults
     })
-
-
-    //render searched cards here, map new event listeners.
-
-
   })
-
-
-
-
-
 }
 
 module.exports = {
