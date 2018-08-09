@@ -30,7 +30,7 @@ function homeView () {
         // renderHome(userId)
       
       document.querySelector('#login-span').setAttribute("style", "display: none")
-
+      document.querySelector('#logout-span').setAttribute("style", "display: block") 
       renderHomePage.allMovies()
       logoutButton.addEventListener('click', (event) => {
         event.preventDefault()
