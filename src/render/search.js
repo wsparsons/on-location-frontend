@@ -27,16 +27,14 @@ function renderOmdbSearch() {
 
   const allMoviesCards = document.querySelector('#allMoviesCards')
   const oneMovieCard = document.querySelector('#oneMovieCard')
-
+  const allScenesCard = document.querySelector('#allScenesCards')
 
   if (!allMoviesCards) {
     oneMovieCard.innerHTML = ''
+    allScenesCard.innerHTML = ''
   } else {
-  allMoviesCards.innerHTML = ''
-    }
-
-  // document.querySelector('#allMoviesCards').innerHTML = ''
-
+    allMoviesCards.innerHTML = ''
+  }
 
   searchOmdbButton.addEventListener('click', (event) => {
     event.preventDefault()
@@ -54,7 +52,6 @@ function renderOmdbSearch() {
         }
         omdbResults.push(movie)
       })
-      // renderAllMovie(omdbResults)
 
       function renderOmdbMovies(movies) {
         let accumulator = ''
@@ -65,7 +62,6 @@ function renderOmdbSearch() {
           accumulator += templates.movieCardTemplate(movie, createdTime)
         })
 
-        // document.querySelector('#allMoviesCards').innerHTML = accumulator
         const allMoviesCards = document.querySelector('#allMoviesCards')
         const oneMovieCard = document.querySelector('#oneMovieCard')
 
@@ -73,12 +69,8 @@ function renderOmdbSearch() {
         if (!allMoviesCards) {
           oneMovieCard.innerHTML = accumulator
         } else {
-        allMoviesCards.innerHTML = accumulator
-          }
-
-
-
-
+          allMoviesCards.innerHTML = accumulator
+        }
       }
       renderOmdbMovies(omdbResults)
 
