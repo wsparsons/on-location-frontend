@@ -102,12 +102,20 @@ const searchBar = () => {
     <div class="col p-4">
       <h3>Search for a movie.</h3>
       <hr>
+
       <div class="input-group mb-3">
-        <input id="searchMovieTitle" type="search" class="form-control" placeholder="Enter Movie Title" aria-label="Movie Title" aria-describedby="button-search">
-        <div class="input-group-append">
-          <a id="searchMovieDB" class="btn btn-outline-secondary" href="/#search">Search Movie</a>
-        </div>
+          <input id="searchMovieTitle" type="search" class="form-control" placeholder="Enter Movie Title" aria-label="Movie Title" aria-describedby="button-search">
+          <div class="input-group-append">
+            <a id="searchMovieButton" class="btn btn-outline-secondary" href="/#search">Search</a>
+          </div>
       </div>
+
+      <div id="noresults-alert" class="alert alert-danger m-2 p-2 d-none text-center mx-auto" role="alert">
+      <i class="fas fa-exclamation-circle"></i> Sorry No Results.
+      </div>
+
+
+
     </div>
   </div>
   `
@@ -130,6 +138,7 @@ const omdbBar = () => {
   `
 }
 
+
 module.exports = {
   loginTemplate,
   registerTemplate,
@@ -138,5 +147,5 @@ module.exports = {
   movieCardTemplate,
   movieInfoTemplate,
   searchBar,
-  omdbBar
+  omdbBar,
 }
