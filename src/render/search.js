@@ -3,6 +3,7 @@ const searchTarget = document.getElementById('searchbar')
 const templates = require('../templates/templates')
 const request = require('../requests/search.js')
 const renderAllMovie = require('../render/home').renderAllMovie
+const renderOneMovie = require('../render/home').renderOneMovie
 
 function renderSearchBar() {
   searchTarget.innerHTML = templates.searchBar()
@@ -40,8 +41,54 @@ function renderOmdbSearch() {
         }
         omdbResults.push(movie)
       })
-      console.log(omdbResults)
-      renderAllMovie(omdbResults)
+      // renderAllMovie(omdbResults)
+
+      function renderOmdbMovies(movies) {
+        let accumulator = ''
+        movies.forEach(movie => {
+          let createdTime = ''
+          let updatedTime = ''
+
+          accumulator += templates.movieCardTemplate(movie, createdTime)
+        })
+
+        document.querySelector('#allMoviesCards').innerHTML = accumulator
+
+      }
+      renderOmdbMovies(omdbResults)
+
+      let allMoviesImages = document.querySelectorAll('.card-img-top')
+
+      allMoviesImages.forEach(movieImage => {
+        movieImage.addEventListener('click', function(event) {
+          event.preventDefault()
+          let searchId = movieImage.getAttribute('data-imdb')
+          // send the selected imdb id to omdb for results.
+          // request.omdbSearch(searchId)
+
+          omdb.getSpecificMovie('', searchId).then(result => {
+            // result is a single OMDB API json object json matching the year and title, with "short" plot summary
+            let omdbMovie = {
+                title: result.Title,
+                imdbID: result.imdbID,
+                year: result.Year,
+                genre: result.Genre,
+                director: result.Director,
+                plot: result.Plot,
+                poster: result.Poster
+            }
+            // Add it to the database, then render it.
+
+
+          })
+
+
+
+
+
+        })
+      })
+
       //return omdbResults
     })
 

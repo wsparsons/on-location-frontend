@@ -9,7 +9,7 @@ async function localSearch(movieTitle) {
           if (response.data.data.length === 0) {
 
             document.getElementById('noresults-alert').classList.remove('d-none')
-            
+
           }
           if (response.data.data.length >= 1) {
             document.getElementById('noresults-alert').classList.add('d-none')
@@ -22,7 +22,7 @@ async function localSearch(movieTitle) {
   }
 }
 
-function omdbSearch() {
+function omdbSearch(targetMovie) {
 
 }
 
