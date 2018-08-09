@@ -27,19 +27,19 @@ const registerTemplate = () => {
       <form id="register">
         <div class="form-group">
           <label for="first-name">First Name</label>
-          <input type="first-name" class="form-control" id="first-name" placeholder="Enter First Name" required>
+          <input type="first-name" class="form-control" name="firstName" id="firstName" placeholder="Enter First Name" required>
         </div>
         <div class="form-group">
           <label for="last-name">Last Name</label>
-          <input type="last-name" class="form-control" id="last-name" placeholder="Enter Last Name" required>
+          <input type="last-name" class="form-control" name="lastName" id="lastName" placeholder="Enter Last Name" required>
         </div>
         <div class="form-group">
           <label for="register-email">Email Address</label>
-          <input type="email" class="form-control" id="register-email" aria-describedby="emailHelp" placeholder="Enter Email" required>
+          <input type="email" class="form-control" name="registerEmail" id="registerEmail" aria-describedby="emailHelp" placeholder="Enter Email" required>
         </div>
         <div class="form-group">
           <label for="register-password">Password</label>
-          <input type="password" class="form-control" id="register-password" placeholder="Enter Password" required>
+          <input type="password" class="form-control" name="registerPassword" id="registerPassword" placeholder="Enter Password" required>
         </div>
         <button type="submit" class="btn btn-info" id="sumbit-register">Register</button>
         <button type="button" class="btn btn-danger" id="cancel-register">Cancel</button>
@@ -66,7 +66,7 @@ const registerAlertTemplate = () => {
 
 const movieCardTemplate = (id, poster, title, plot, time) => {
   return `
-    <div class="col-md-3 col-sm-4">
+    <div class="col-lg-3 col-md-4 col-sm-6">
       <div class="card m-1 shadow p-0" href="#movies/${id}">
         <img class="card-img-top" src="${poster}" alt="Card image cap" movie-id=${id}>
         <div class="card-body">
@@ -100,11 +100,11 @@ const movieInfoTemplate = (movieInfo) => {
     </div>`
 }
 
-const sceneCardTemplate = (movieid, scene, time) => {
+const sceneCardTemplate = (scene, time) => {
   return `
     <div class="col-md-3">
-      <div class="card m-1 shadow p-0" id="${scene.id}" movie-id="${movieid}">
-        <img class="card-img" src="${scene.photo}" alt="Card image cap">
+      <div class="card m-1 shadow p-0" id="${scene.id}">
+        <img class="card-img" src="" alt="Card image cap">
         <div class="card-body">
           <p class="card-text"><span class="font-weight-bold">Description: </span>${scene.description}</p>
           <p class="card-text"><span class="font-weight-bold">Address: </span>${scene.address}</p>
@@ -167,5 +167,6 @@ module.exports = {
   movieCardTemplate,
   movieInfoTemplate,
   searchBar,
-  omdbBar
+  omdbBar,
+  sceneCardTemplate
 }
