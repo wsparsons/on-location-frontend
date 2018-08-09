@@ -66,7 +66,7 @@ const registerAlertTemplate = () => {
 
 const movieCardTemplate = (id, poster, title, plot, time) => {
   return `
-    <div class="col-md-3 col-sm-4">
+    <div class="col-lg-3 col-md-4 col-sm-6">
       <div class="card m-1 shadow p-0" href="#movies/${id}">
         <img class="card-img-top" src="${poster}" alt="Card image cap" movie-id=${id}>
         <div class="card-body">
@@ -100,11 +100,11 @@ const movieInfoTemplate = (movieInfo) => {
     </div>`
 }
 
-const sceneCardTemplate = (movieid, scene, time) => {
+const sceneCardTemplate = (scene, time) => {
   return `
     <div class="col-md-3">
-      <div class="card m-1 shadow p-0" id="${scene.id}" movie-id="${movieid}">
-        <img class="card-img" src="${scene.photo}" alt="Card image cap">
+      <div class="card m-1 shadow p-0" id="${scene.id}">
+        <img class="card-img" src="" alt="Card image cap">
         <div class="card-body">
           <p class="card-text"><span class="font-weight-bold">Description: </span>${scene.description}</p>
           <p class="card-text"><span class="font-weight-bold">Address: </span>${scene.address}</p>
@@ -167,5 +167,6 @@ module.exports = {
   movieCardTemplate,
   movieInfoTemplate,
   searchBar,
-  omdbBar
+  omdbBar,
+  sceneCardTemplate
 }
