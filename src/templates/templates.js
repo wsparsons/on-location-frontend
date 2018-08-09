@@ -68,10 +68,10 @@ const movieCardTemplate = (movie, time) => {
   return `
     <div class="col-lg-3 col-md-4 col-sm-6">
       <div class="card m-1 shadow p-0" href="#movies/${movie.id}">
-        <img class="card-img-top" src="${movie.poster}" alt="Card image cap" id="movie${movie.id}" data="${movie.id}">
+        <img class="card-img-top" src="${movie.poster}" alt="Card image cap" id="movie${movie.id}" data="${movie.id}" data-imdb="${movie.imdbID}">
         <div class="card-body">
-          <h5 class="card-title">${movie.title}</h5>
-          <p class="card-text">${movie.plot}</p>
+          <h5 class="card-title">${movie.title}  (${movie.year})</h5>
+          <p class="card-text">${movie.plot || ''}</p>
         </div>
         <div class="card-footer">
           <small class="text-muted">Last updated ${movie.time} ago</small>
