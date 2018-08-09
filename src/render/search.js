@@ -2,6 +2,7 @@ const omdb = require('omdb-js')('537f0607')
 const searchTarget = document.getElementById('searchbar')
 const templates = require('../templates/templates')
 const request = require('../requests/search.js')
+const renderAllMovie = require('../render/home').renderAllMovie
 
 function renderSearchBar() {
   searchTarget.innerHTML = templates.searchBar()
@@ -30,7 +31,6 @@ function renderOmdbSearch() {
     omdb.searchForMovie(`${searchString}`).then(results => {
       // results is an array of movie objects
       let omdbResults = []
-
       results.Search.forEach((e) => {
         let movie = {
           imdbID: e.imdbID,
@@ -40,15 +40,13 @@ function renderOmdbSearch() {
         }
         omdbResults.push(movie)
       })
-
-
-      return omdbResults
+      console.log(omdbResults)
+      renderAllMovie(omdbResults)
+      //return omdbResults
     })
 
-    console.log(omdbResults)
 
     //render searched cards here, map new event listeners.
-
 
 
   })
