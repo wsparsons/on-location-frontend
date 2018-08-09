@@ -66,14 +66,16 @@ const registerAlertTemplate = () => {
 
 const movieCardTemplate = (id, poster, title, plot, time) => {
   return `
-    <div class="card m-2 col-sm-3 col-md-2 shadow p-0" href="#movies/${id}">
-      <img class="card-img-top" src="${poster}" alt="Card image cap" movie-id=${id}>
-      <div class="card-body">
-        <h5 class="card-title">${title}</h5>
-        <p class="card-text">${plot}</p>
-      </div>
-      <div class="card-footer">
-        <small class="text-muted">Last updated ${time} ago</small>
+    <div class="col-md-3 col-sm-4">
+      <div class="card m-1 shadow p-0" href="#movies/${id}">
+        <img class="card-img-top" src="${poster}" alt="Card image cap" movie-id=${id}>
+        <div class="card-body">
+          <h5 class="card-title">${title}</h5>
+          <p class="card-text">${plot}</p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Last updated ${time} ago</small>
+        </div>
       </div>
     </div>`
 }
@@ -92,8 +94,14 @@ const movieInfoTemplate = (movieInfo) => {
         <p class="font-weight-bold">Genre: <span class="font-weight-normal">${movieInfo.genre}</span></p>
         <p class="font-weight-bold">Director: <span class="font-weight-normal">${movieInfo.director}</span></p>
         <p class="font-weight-bold">Plot: <span class="font-weight-normal">${movieInfo.plot}</span></p>
+        <button type="button" class="btn btn-outline-info btn-sm">View Scenes</button>
+        <button type="button" class="btn btn-outline-primary btn-sm">Add Scene</button>
       </div>
     </div>`
+}
+
+const sceneCardTemplate = (movieid, id, description, address, photo) => {
+
 }
 
 const searchBar = () => {
@@ -147,5 +155,5 @@ module.exports = {
   movieCardTemplate,
   movieInfoTemplate,
   searchBar,
-  omdbBar,
+  omdbBar
 }

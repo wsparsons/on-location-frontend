@@ -20,7 +20,7 @@ function renderAllMovie(movies) {
     accumulator += templates.movieCardTemplate(movie.id, movie.poster, movie.title, movie.plot, createdTime)
   })
 
-  document.querySelector('#allMovieCards').innerHTML = accumulator
+  document.querySelector('#allMoviesCards').innerHTML = accumulator
 
   let allMoviesImages = document.querySelectorAll('.card-img-top')
 
@@ -37,6 +37,7 @@ function oneMovie(movieId) {
   axios.get(`${baseURL}/api/movies/${movieId}`)
     .then(response => {
       let movieInfo = response.data.data[0]
+
       renderOneMovie(movieInfo)
     })
 }
