@@ -7,7 +7,6 @@ function allMovies() {
     .then(response => {
       let movies = response.data.data
       renderAllMovie(movies)
-
     })
 }
 
@@ -39,14 +38,54 @@ function oneMovie(movieId) {
       let movieInfo = response.data.data[0]
 
       renderOneMovie(movieInfo)
+      // let oneMovieId = movieInfo.id
+      // let viewScenesButton = document.querySelector('#view-scenes')
+      // viewScenesButton.addEventListener('click', function(event){
+      //   event.preventDefault()
+      //   // console.log('hello');
+      //   // let oneMovieId = event.target.parentNode.parentNode.id
+      //   // getAllScenes(oneMovieId)
+      //   console.log(oneMovieId);
+      // })
     })
 }
 
 function renderOneMovie(movie) {
   document.querySelector('#allMoviesCardContainer').innerHTML = ''
   document.querySelector('#oneMovieCard').innerHTML = templates.movieInfoTemplate(movie)
+
+  let viewScenesButton = document.querySelector('#view-scenes')
+  viewScenesButton.addEventListener('click', function() {
+    // console.log('hello');
+    let oneMovieId = event.target.parentNode.parentNode.id
+    // console.log(oneMovieId);
+    getAllScenes(oneMovieId)
+  })
 }
 
+function getAllScenes(oneMovieId) {
+  axios.get(`${baseURL}/api/movies/${oneMovieId}/scenes`)
+    .then(response => {
+      // console.log(response);
+      let allScenes = response.data.scenes
+      // console.log(scenes);
+      renderAllScenes(allScenes)
+    })
+}
+
+function renderAllScenes(scenes) {
+  // console.log(scenes);
+  let accumulator = ''
+  scenes.forEach(scene => {
+    // console.log(scene);
+    let createdTime = moment(scene.created_at).toNow(true)
+    let updatedTime = moment(scene.updated_at).toNow(true)
+
+    accumulator += templates.sceneCardTemplate(scene, createdTime)
+  })
+
+  document.querySelector('#allScenesCards').innerHTML = accumulator
+}
 
 module.exports = {
   allMovies,

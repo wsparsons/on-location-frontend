@@ -17,6 +17,10 @@ img.card-img {
   display: flex;
 }
 
+.row > div[class*='col-lg'] {
+  display: flex;
+}
+
 #noresults-alert {
   width: 300px;
 }
