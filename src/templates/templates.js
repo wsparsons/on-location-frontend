@@ -74,7 +74,7 @@ const movieCardTemplate = (movie, time) => {
           <p class="card-text">${movie.plot || ''}</p>
         </div>
         <div class="card-footer">
-          <small class="text-muted">Last updated ${movie.time} ago</small>
+          <small class="text-muted">Last updated ${time} ago</small>
         </div>
       </div>
     </div>`
