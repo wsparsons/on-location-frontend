@@ -9,6 +9,7 @@ const loginPage = require('./render/login')
 
 const renderHomePage = require('./render/home')
 
+
 // searchButton.addEventListener('click', () => {
 //   window.location.hash = '#search'
 // })
@@ -18,16 +19,28 @@ function homeView () {
   if (!token) {
         // Render homepage view only if there is no token.
         // renderHome()
+    document.querySelector('#logout-span').setAttribute("style", "display: none")
+    document.querySelector('#login-span').setAttribute("style", "display: block")
+
     renderHomePage.allMovies()
-    loginButton.addEventListener('click', loginPage.createLogin())
+    loginButton.addEventListener('click', loginForm)
     registerButton.addEventListener('click', registerForm)
   } else {
         // renderHome(userId)
+      
+      document.querySelector('#login-span').setAttribute("style", "display: none")
 
       renderHomePage.allMovies()
+      logoutButton.addEventListener('click', (event) => {
+        event.preventDefault()
+        localStorage.removeItem('token')
+        const container = document.getElementById('form-container')
+        container.innerHTML = ''
+        console.log('LOGOUT PRESSED')
+        homeView()
+      })
     }
-  
-}
+  }
 
 homeView()
 window.onhashchange = () => homeView()
@@ -53,19 +66,49 @@ function renderMain(){
   document.querySelector('main').classList.remove('d-none')
 }
 
-// function loginForm() {
-//   document.querySelector('title').textContent = 'Sign In'
-//   document.querySelector('main').classList.add('d-none')
+function loginForm() {
+  document.querySelector('title').textContent = 'Sign In'
+  document.querySelector('main').classList.add('d-none')
 
-//   const container = document.getElementById('form-container')
-//   container.innerHTML = templates.loginTemplate()
+  const container = document.getElementById('form-container')
+  container.innerHTML = templates.loginTemplate()
 
-//   const cancelLogin = document.getElementById('cancel-login')
-//   cancelLogin.addEventListener('click', renderMain)
+  const cancelLogin = document.getElementById('cancel-login')
+  cancelLogin.addEventListener('click', renderMain)
 
-//   // const loginFormSubmit = document.getElementById('login')
-//   // loginForm.addEventListener('submit', verify)
-// }
+  const loginFormSubmit = document.getElementById('login')
+  //loginForm.addEventListener('submit', verify)
+
+  loginFormSubmit.addEventListener('submit', (event) => {
+    event.preventDefault()
+    const body = {
+      email: event.target.email.value,
+      password: event.target.password.value
+    }
+    return axios.post(`${baseURL}/api/users/login`, body)
+      .then(res => {
+        localStorage.setItem('token', res.data.token)
+        return res.data.token
+      })
+      .then(token => {
+        console.log('RENDER MAIN PAGE')
+        document.querySelector('main').classList.remove('d-none')
+        document.querySelector('#login-span').setAttribute("style", "display: none")
+        document.querySelector('#logout-span').removeAttribute("style")
+        renderMain()
+        homeView()
+
+      })
+      .catch(e => {
+        console.log(e)
+        let alertspan = document.querySelector('#login-alert')
+        alertspan.innerHTML += templates.loginAlertTemplate()
+        setTimeout(() => loginForm(), 4000)
+
+      })
+
+  })
+}
 
 function registerForm() {
   document.querySelector('title').textContent = 'Register'
