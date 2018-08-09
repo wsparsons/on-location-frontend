@@ -28,8 +28,12 @@ function homeView () {
     registerButton.addEventListener('click', registerForm)
   } else {
         // renderHome(userId)
-      
+
       document.querySelector('#login-span').setAttribute("style", "display: none")
+      const addMovieButton = document.getElementById('add-movie-button')
+
+
+      addMovieButton.addEventListener('click', search.renderOmdbSearch) 
 
       renderHomePage.allMovies()
       logoutButton.addEventListener('click', (event) => {
@@ -44,7 +48,7 @@ function homeView () {
     search.renderSearchBar()
   }
 
-    
+
 
 
 
