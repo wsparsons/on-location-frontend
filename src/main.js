@@ -1,4 +1,5 @@
 window.baseURL = 'http://localhost:5000'
+const search = require('./render/search')
 
 const loginButton = document.getElementById('login-button')
 const logoutButton = document.getElementById('logout-button')
@@ -41,6 +42,11 @@ function homeView () {
       })
     }
   }
+
+    search.renderSearchBar()
+
+}
+
 
 homeView()
 window.onhashchange = () => homeView()

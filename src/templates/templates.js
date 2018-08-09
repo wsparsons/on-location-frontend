@@ -66,7 +66,7 @@ const registerAlertTemplate = () => {
 
 const movieCardTemplate = (id, poster, title, plot, time) => {
   return `
-    <div class="card m-2 col-5 col-md-3 shadow p-0" href="#movies/${id}">
+    <div class="card m-2 col-sm-3 col-md-2 shadow p-0" href="#movies/${id}">
       <img class="card-img-top" src="${poster}" alt="Card image cap" movie-id=${id}>
       <div class="card-body">
         <h5 class="card-title">${title}</h5>
@@ -96,11 +96,56 @@ const movieInfoTemplate = (movieInfo) => {
     </div>`
 }
 
+const searchBar = () => {
+  return `
+  <div class="row">
+    <div class="col p-4">
+      <h3>Search for a movie.</h3>
+      <hr>
+
+      <div class="input-group mb-3">
+          <input id="searchMovieTitle" type="search" class="form-control" placeholder="Enter Movie Title" aria-label="Movie Title" aria-describedby="button-search">
+          <div class="input-group-append">
+            <a id="searchMovieButton" class="btn btn-outline-secondary" href="/#search">Search</a>
+          </div>
+      </div>
+
+      <div id="noresults-alert" class="alert alert-danger m-2 p-2 d-none text-center mx-auto" role="alert">
+      <i class="fas fa-exclamation-circle"></i> Sorry No Results.
+      </div>
+
+
+
+    </div>
+  </div>
+  `
+}
+
+const omdbBar = () => {
+  return `
+  <div class="row">
+    <div class="col p-4">
+      <h3>Add a movie from OMDB.</h3>
+      <hr>
+      <div class="input-group mb-3">
+        <input type="search" class="form-control" placeholder="Enter Movie Title" aria-label="Movie Title" aria-describedby="button-search">
+        <div class="input-group-append">
+          <a class="btn btn-outline-primary" href="/#search">Search Movie</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  `
+}
+
+
 module.exports = {
   loginTemplate,
   registerTemplate,
   loginAlertTemplate,
   registerAlertTemplate,
   movieCardTemplate,
-  movieInfoTemplate
+  movieInfoTemplate,
+  searchBar,
+  omdbBar,
 }
