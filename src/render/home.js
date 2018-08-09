@@ -48,8 +48,32 @@ function renderOneMovie(movie) {
   let viewScenesButton = document.querySelector('#view-scenes')
   viewScenesButton.addEventListener('click', function() {
     let oneMovieId = viewScenesButton.getAttribute('data')
-    // console.log(oneMovieId);
+    console.log(oneMovieId);
     getAllScenes(oneMovieId)
+  })
+
+  let addSceneToggle = document.querySelector('#add-scene')
+  addSceneToggle.addEventListener('click', (event) => {
+    document.querySelector('#oneMovieCard').innerHTML += templates.sceneAddTemplate()
+  })
+
+  submitNewScene(movie)
+
+}
+
+function submitNewScene() {
+  let addSceneForm = document.querySelector('#addSceneForm')
+  addSceneForm.addEventListener('submit', (event) => {
+    event.preventDefault()
+    const body = {
+      description: event.target.sceneDescription.value,
+      address: event.target.sceneLocation.value
+    }
+    return axios.post(`${baseURL}/api/movies/${movie}/scenes`, body)
+      .then(res => {
+        localStorage.setItem('token', res.data.token)
+        return res.data.token
+      })
   })
 }
 
@@ -101,6 +125,7 @@ function renderAllScenes(scenes) {
     // document.querySelector('#allScenesCards').innerHTML = accumulator
   // })
 }
+
 
 module.exports = {
   allMovies,
