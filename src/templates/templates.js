@@ -1,3 +1,5 @@
+const moment = require('moment')
+
 const loginTemplate = () => {
   return `
     <div class="col-6 p-4">
@@ -64,7 +66,7 @@ const registerAlertTemplate = () => {
   </div>`
 }
 
-const movieCardTemplate = (movie, time) => {
+const movieCardTemplate = (movie) => {
   return `
     <div class="col-lg-3 col-md-4 col-sm-6">
       <div class="card m-1 shadow p-0" href="#movies/${movie.id}">
@@ -74,7 +76,7 @@ const movieCardTemplate = (movie, time) => {
           <p class="card-text">${movie.plot || ''}</p>
         </div>
         <div class="card-footer">
-          <small class="text-muted">Last updated ${time} ago</small>
+          <small class="text-muted">${movie.created_at === movie.updated_at ? 'Created ' + moment(movie.created_at).toNow(true) : 'Last updated ' + moment(movie.updated_at).toNow(true)} ago</small>
         </div>
       </div>
     </div>`
@@ -100,7 +102,7 @@ const movieInfoTemplate = (movieInfo) => {
     </div>`
 }
 
-const sceneCardTemplate = (scene, photo, time) => {
+const sceneCardTemplate = (scene, photo) => {
   return `
     <div class="col-lg-3 col-md-4 col-sm-6">
       <div class="card m-1 shadow p-0" id="scene${scene.id}" data="${scene.id}">
@@ -112,7 +114,7 @@ const sceneCardTemplate = (scene, photo, time) => {
           <button data="${scene.id}" type="button" class="btn btn-outline-danger btn-sm" >Delete</button>
         </div>
         <div class="card-footer">
-          <small class="text-muted">Last updated ${time} ago</small>
+          <small class="text-muted">${scene.created_at === scene.updated_at ? 'Created ' + moment(scene.created_at).toNow(true) : 'Last updated ' + moment(scene.updated_at).toNow(true)} ago</small>
         </div>
       </div>
     </div>`

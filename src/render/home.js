@@ -13,10 +13,10 @@ function allMovies() {
 function renderAllMovie(movies) {
   let accumulator = ''
   movies.forEach(movie => {
-    let createdTime = moment(movie.created_at).toNow(true)
-    let updatedTime = moment(movie.updated_at).toNow(true)
+    // let createdTime = moment(movie.created_at).toNow(true)
+    // let updatedTime = moment(movie.updated_at).toNow(true)
 
-    accumulator += templates.movieCardTemplate(movie, createdTime)
+    accumulator += templates.movieCardTemplate(movie)
   })
 
   document.querySelector('#allMoviesCards').innerHTML = accumulator
@@ -73,33 +73,13 @@ function renderAllScenes(scenes) {
         const photoURLs = response.map(query => query.data.data[0].photo)
 
         return scenes.map((scene, i) => {
-          let createdTime = moment(scene.created_at).toNow(true)
-          return templates.sceneCardTemplate(scene, photoURLs[i], createdTime)
+          // let createdTime = moment(scene.created_at).toNow(true)
+          return templates.sceneCardTemplate(scene, photoURLs[i])
         })
       })
       .then(response => {
         document.querySelector('#allScenesCards').innerHTML = response.join('')
       })
-
-    //   axios.get(`${baseURL}/api/movies/${scene.movie_id}/scene/${scene.id}/photos`)
-    //     .then(response => {
-    //       photoURL = response.data.data[0].photo
-    //       // scene.photo = photoURL
-    //       // return scene.photo
-    //     })
-    //     // console.log(photoURL);
-    //     .then(response => {
-    //       let createdTime = moment(scene.created_at).toNow(true)
-    //       let updatedTime = moment(scene.updated_at).toNow(true)
-    //
-    //       return accumulator += templates.sceneCardTemplate(scene, photoURL, createdTime)
-    //
-    //     })
-    //
-    // })
-    //
-    // document.querySelector('#allScenesCards').innerHTML = accumulator
-  // })
 }
 
 module.exports = {
