@@ -104,5 +104,6 @@ function renderAllScenes(scenes) {
 
 module.exports = {
   allMovies,
-  renderAllMovie
+  renderAllMovie,
+  oneMovie
 }
