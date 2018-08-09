@@ -7,3 +7,12 @@
   margin: auto;
   display: block;
 }
+
+img.card-img {
+  width: 100%;
+  /* height: 40px; */
+}
+
+.row > div[class*='col-md'] {
+  display: flex;
+}
