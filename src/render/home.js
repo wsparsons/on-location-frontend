@@ -57,6 +57,8 @@ function renderOneMovie(movie) {
     document.querySelector('#oneMovieCard').innerHTML += templates.sceneAddTemplate()
   })
 
+  submitNewScene(movie)
+
 }
 
 function submitNewScene() {

@@ -6,9 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "browserify src/main.js -o bundle.js",
-    "watchSign": "watchify src/main.js -o bundle.js",
+    "watch": "watchify src/main.js -o bundle.js",
     "dev-server": "live-server",
-    "dev": "run-all \"npm run watchSign\" \"npm run dev-server\""
+    "dev": "run-all \"npm run watch\" \"npm run dev-server\""
   },
   "keywords": [],
   "author": "Craig Fell, Wendy Parsons, Hedim Ramirez",
