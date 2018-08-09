@@ -75,6 +75,7 @@ function renderMain(){
   const container = document.getElementById('form-container')
   container.innerHTML = ''
   document.querySelector('main').classList.remove('d-none')
+  document.querySelector('title').textContent = 'On-Location'
 }
 
 function loginForm() {
@@ -106,6 +107,7 @@ function loginForm() {
         document.querySelector('main').classList.remove('d-none')
         document.querySelector('#login-span').setAttribute("style", "display: none")
         document.querySelector('#logout-span').removeAttribute("style")
+        document.querySelector('title').textContent = 'On-Location'
         renderMain()
         homeView()
 

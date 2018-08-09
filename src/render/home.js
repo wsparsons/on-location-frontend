@@ -77,7 +77,7 @@ function renderAllScenes(scenes) {
   // console.log(scenes);
   let accumulator = ''
   scenes.forEach(scene => {
-    // console.log(scene);
+    console.log(scene);
     let createdTime = moment(scene.created_at).toNow(true)
     let updatedTime = moment(scene.updated_at).toNow(true)
 
