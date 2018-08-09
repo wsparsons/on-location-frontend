@@ -109,7 +109,7 @@ function loginForm() {
         console.log(e)
         let alertspan = document.querySelector('#login-alert')
         alertspan.innerHTML += templates.loginAlertTemplate()
-        setTimeout(() => loginForm(), 4000)
+        setTimeout(() => alertspan.innerHTML='', 4000)
 
       })
 
