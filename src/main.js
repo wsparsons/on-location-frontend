@@ -2,33 +2,51 @@ window.baseURL = 'http://localhost:5000'
 const search = require('./render/search')
 
 const loginButton = document.getElementById('login-button')
+const logoutButton = document.getElementById('logout-button')
 const registerButton = document.getElementById('register-button')
 const templates = require('./templates/templates')
 const searchButton = document.getElementById('button-search')
+const loginPage = require('./render/login')
 
 const renderHomePage = require('./render/home')
 
-loginButton.addEventListener('click', loginForm)
-registerButton.addEventListener('click', registerForm)
+
 // searchButton.addEventListener('click', () => {
 //   window.location.hash = '#search'
 // })
 
 function homeView () {
-  renderHomePage.allMovies()
+  const token = localStorage.getItem('token')
+  if (!token) {
+        // Render homepage view only if there is no token.
+        // renderHome()
+    document.querySelector('#logout-span').setAttribute("style", "display: none")
+    document.querySelector('#login-span').setAttribute("style", "display: block")
 
-    // const token = localStorage.getItem('token')
-    // if (!token) {
-    //     // Render homepage view only if there is no token.
-    //     // renderHome()
-    // } else {
-    //     // renderHome(userId)
-    // }
+    renderHomePage.allMovies()
+    loginButton.addEventListener('click', loginForm)
+    registerButton.addEventListener('click', registerForm)
+  } else {
+        // renderHome(userId)
+      
+      document.querySelector('#login-span').setAttribute("style", "display: none")
 
+      renderHomePage.allMovies()
+      logoutButton.addEventListener('click', (event) => {
+        event.preventDefault()
+        localStorage.removeItem('token')
+        const container = document.getElementById('form-container')
+        container.innerHTML = ''
+        console.log('LOGOUT PRESSED')
+        homeView()
+      })
+    }
+  }
 
     search.renderSearchBar()
 
 }
+
 
 homeView()
 window.onhashchange = () => homeView()
@@ -64,8 +82,38 @@ function loginForm() {
   const cancelLogin = document.getElementById('cancel-login')
   cancelLogin.addEventListener('click', renderMain)
 
-  // const loginFormSubmit = document.getElementById('login')
-  // loginForm.addEventListener('submit', verify)
+  const loginFormSubmit = document.getElementById('login')
+  //loginForm.addEventListener('submit', verify)
+
+  loginFormSubmit.addEventListener('submit', (event) => {
+    event.preventDefault()
+    const body = {
+      email: event.target.email.value,
+      password: event.target.password.value
+    }
+    return axios.post(`${baseURL}/api/users/login`, body)
+      .then(res => {
+        localStorage.setItem('token', res.data.token)
+        return res.data.token
+      })
+      .then(token => {
+        console.log('RENDER MAIN PAGE')
+        document.querySelector('main').classList.remove('d-none')
+        document.querySelector('#login-span').setAttribute("style", "display: none")
+        document.querySelector('#logout-span').removeAttribute("style")
+        renderMain()
+        homeView()
+
+      })
+      .catch(e => {
+        console.log(e)
+        let alertspan = document.querySelector('#login-alert')
+        alertspan.innerHTML += templates.loginAlertTemplate()
+        setTimeout(() => loginForm(), 4000)
+
+      })
+
+  })
 }
 
 function registerForm() {

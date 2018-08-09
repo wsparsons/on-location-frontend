@@ -6,11 +6,11 @@ const loginTemplate = () => {
       <form id="login">
         <div class="form-group">
           <label for="login-email">Email Address</label>
-          <input type="email" class="form-control" id="login-email" aria-describedby="emailHelp" placeholder="Enter email" required="required">
+          <input type="email" class="form-control" name="email" id="login-email" aria-describedby="emailHelp" placeholder="Enter email" required="required">
         </div>
         <div class="form-group">
           <label for="login-password">Password</label>
-          <input type="password" class="form-control" id="login-password" placeholder="Enter Password" required="required">
+          <input type="password" class="form-control" name="password" id="login-password" placeholder="Enter Password" required="required">
         </div>
         <button type="submit" class="btn btn-primary" id="sumbit-login">Login</button>
         <button type="button" class="btn btn-danger" id="cancel-login">Cancel</button>
