@@ -27,19 +27,19 @@ const registerTemplate = () => {
       <form id="register">
         <div class="form-group">
           <label for="first-name">First Name</label>
-          <input type="first-name" class="form-control" id="first-name" placeholder="Enter First Name" required>
+          <input type="first-name" class="form-control" name="firstName" id="firstName" placeholder="Enter First Name" required>
         </div>
         <div class="form-group">
           <label for="last-name">Last Name</label>
-          <input type="last-name" class="form-control" id="last-name" placeholder="Enter Last Name" required>
+          <input type="last-name" class="form-control" name="lastName" id="lastName" placeholder="Enter Last Name" required>
         </div>
         <div class="form-group">
           <label for="register-email">Email Address</label>
-          <input type="email" class="form-control" id="register-email" aria-describedby="emailHelp" placeholder="Enter Email" required>
+          <input type="email" class="form-control" name="registerEmail" id="registerEmail" aria-describedby="emailHelp" placeholder="Enter Email" required>
         </div>
         <div class="form-group">
           <label for="register-password">Password</label>
-          <input type="password" class="form-control" id="register-password" placeholder="Enter Password" required>
+          <input type="password" class="form-control" name="registerPassword" id="registerPassword" placeholder="Enter Password" required>
         </div>
         <button type="submit" class="btn btn-info" id="sumbit-register">Register</button>
         <button type="button" class="btn btn-danger" id="cancel-register">Cancel</button>
