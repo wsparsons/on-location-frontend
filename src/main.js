@@ -28,9 +28,14 @@ function homeView () {
     registerButton.addEventListener('click', registerForm)
   } else {
         // renderHome(userId)
-      
+
       document.querySelector('#login-span').setAttribute("style", "display: none")
+      const addMovieButton = document.getElementById('add-movie-button')
+
+
+      addMovieButton.addEventListener('click', search.renderOmdbSearch) 
       document.querySelector('#logout-span').setAttribute("style", "display: block") 
+    
       renderHomePage.allMovies()
       logoutButton.addEventListener('click', (event) => {
         event.preventDefault()
@@ -44,7 +49,7 @@ function homeView () {
     search.renderSearchBar()
   }
 
-    
+
 
 
 

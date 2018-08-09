@@ -148,9 +148,9 @@ const omdbBar = () => {
       <h3>Add a movie from OMDB.</h3>
       <hr>
       <div class="input-group mb-3">
-        <input type="search" class="form-control" placeholder="Enter Movie Title" aria-label="Movie Title" aria-describedby="button-search">
+        <input id="searchOmdbTitle" type="search" class="form-control" placeholder="Enter Movie Title" aria-label="Movie Title" aria-describedby="button-search">
         <div class="input-group-append">
-          <a class="btn btn-outline-primary" href="/#search">Search Movie</a>
+          <a id="searchOmdbButton" class="btn btn-outline-primary" href="/#search">Search Movie</a>
         </div>
       </div>
     </div>
