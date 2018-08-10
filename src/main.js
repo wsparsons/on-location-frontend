@@ -1,7 +1,7 @@
 //dev api url
-window.baseURL = 'http://localhost:5000'
+// window.baseURL = 'http://localhost:5000'
 //production api url
-// window.baseURL = 'http://onlocation.herokuapp.com'
+window.baseURL = 'http://onlocation.herokuapp.com:5000'
 const search = require('./render/search')
 
 const loginButton = document.getElementById('login-button')
