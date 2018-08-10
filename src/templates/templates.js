@@ -174,8 +174,12 @@ const sceneAddTemplate = () => {
             <label for="sceneLocation">Location</label>
             <input type="text" class="form-control" name="sceneLocation" id="sceneLocation" placeholder="addess" required>
         </div>
-            <button type="submit" class="btn btn-primary" id="submit-login">Submit</button>
-            <button type="button" class="btn btn-danger" id="cancel-login">Cancel</button>
+        <div class="form-group">
+            <label for="scenePhoto">Photo URL</label>
+            <input type="text" class="form-control" name="scenePhoto" id="scenePhoto" placeholder="https://imgplaceholder.com/420x320/cccccc/757575/glyphicon-picture">
+        </div>
+            <button type="submit" class="btn btn-primary" id="submit-scene">Submit</button>
+            <button type="button" class="btn btn-danger" id="cancel-scene">Cancel</button>
       </form>
           <span id="addScene"></span>
         </div>`
