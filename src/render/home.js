@@ -1,5 +1,6 @@
 const templates = require('../templates/templates')
 const moment = require('moment')
+const deleteScene = require('../requests/scenes').deleteScene
 
 
 function allMovies() {
@@ -57,7 +58,7 @@ function renderOneMovie(movie) {
 
 }
 
-  
+
 
 function addNewSceneForm(movie) {
   let addSceneCard = document.querySelector('#oneMovieCard')
@@ -76,7 +77,7 @@ function addNewSceneForm(movie) {
       return axios(`${baseURL}/api/movies/${movie}/scenes`, {
           headers: {
             authorization: `Bearer ${localStorage.getItem('token')}`
-          }, 
+          },
           data: body,
           method: 'POST'
         })
@@ -117,6 +118,15 @@ function renderAllScenes(scenes) {
       })
       .then(response => {
         document.querySelector('#allScenesCards').innerHTML = response.join('')
+        const deleteButtons = document.querySelectorAll('#delete-button')
+        deleteButtons.forEach((e) => {''
+          e.addEventListener('click', () => {
+            let cardMovieId = e.getAttribute("data-movie")
+            let cardSceneId = e.getAttribute("data")
+            // console.log(cardmovieId, cardsceneId)
+            deleteScene(cardMovieId, cardSceneId)
+          })
+        })
       })
 }
 
