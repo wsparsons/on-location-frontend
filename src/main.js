@@ -1,4 +1,7 @@
+//dev api url
 window.baseURL = 'http://localhost:5000'
+//production api url
+// window.baseURL = 'http://onlocation.herokuapp.com'
 const search = require('./render/search')
 
 const loginButton = document.getElementById('login-button')
@@ -33,9 +36,9 @@ function homeView () {
       const addMovieButton = document.getElementById('add-movie-button')
 
 
-      addMovieButton.addEventListener('click', search.renderOmdbSearch) 
-      document.querySelector('#logout-span').setAttribute("style", "display: block") 
-    
+      addMovieButton.addEventListener('click', search.renderOmdbSearch)
+      document.querySelector('#logout-span').setAttribute("style", "display: block")
+
       renderHomePage.allMovies()
       logoutButton.addEventListener('click', (event) => {
         event.preventDefault()
