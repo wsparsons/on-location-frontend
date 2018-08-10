@@ -38,6 +38,7 @@ function oneMovie(movieId) {
       let movieInfo = response.data.data[0]
 
       renderOneMovie(movieInfo)
+      addNewSceneForm(movieId)
     })
 }
 
@@ -50,32 +51,45 @@ function renderOneMovie(movie) {
     let oneMovieId = viewScenesButton.getAttribute('data')
     console.log(oneMovieId);
     getAllScenes(oneMovieId)
+    //submitNewScene(oneMovieId)
+
   })
 
+}
+
+  
+
+function addNewSceneForm(movie) {
+  let addSceneCard = document.querySelector('#oneMovieCard')
   let addSceneToggle = document.querySelector('#add-scene')
+
+  console.log("IN SUBMITNEWSCENE! ", addSceneToggle)
   addSceneToggle.addEventListener('click', (event) => {
-    document.querySelector('#oneMovieCard').innerHTML += templates.sceneAddTemplate()
+    addSceneCard.innerHTML += templates.sceneAddTemplate()
+    let addSceneForm = document.querySelector('#addSceneForm')
+    addSceneForm.addEventListener('submit', (event) => {
+      event.preventDefault()
+      const body = {
+        description: event.target.sceneDescription.value,
+        address: event.target.sceneLocation.value
+      } //${baseURL}/api/movies/${movie}/scenes
+      return axios(`${baseURL}/api/movies/${movie}/scenes`, {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem('token')}`
+          }, 
+          data: body,
+          method: 'POST'
+        })
+        .then(response => {
+          getAllScenes(movie)
+
+        })
+    })
   })
-
-  submitNewScene(movie)
-
 }
 
-function submitNewScene() {
-  let addSceneForm = document.querySelector('#addSceneForm')
-  addSceneForm.addEventListener('submit', (event) => {
-    event.preventDefault()
-    const body = {
-      description: event.target.sceneDescription.value,
-      address: event.target.sceneLocation.value
-    }
-    return axios.post(`${baseURL}/api/movies/${movie}/scenes`, body)
-      .then(res => {
-        localStorage.setItem('token', res.data.token)
-        return res.data.token
-      })
-  })
-}
+
+// function submitNewScene
 
 function getAllScenes(oneMovieId) {
   axios.get(`${baseURL}/api/movies/${oneMovieId}/scenes`)
