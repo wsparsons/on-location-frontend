@@ -126,16 +126,18 @@ function renderAllScenes(scenes) {
           e.addEventListener('click', () => {
             let cardMovieId = e.getAttribute("data-movie")
             let cardSceneId = e.getAttribute("data")
-            // console.log(cardmovieId, cardsceneId)
+            console.log('MOVIEID IS: ', cardMovieId)
             deleteScene(cardMovieId, cardSceneId)
+            
           })
+
         })
-      })
-      .then((response) => {
-        console.log('DEL RESP: ', response)
-        //getAllScenes(scene.movie_id)
-      })
-}
+
+
+      }).then((id)=> console.log(id)) 
+
+  }
+
 
 
 
