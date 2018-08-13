@@ -52,7 +52,7 @@ function renderOneMovie(movie) {
     let oneMovieId = viewScenesButton.getAttribute('data')
     console.log(oneMovieId);
     getAllScenes(oneMovieId)
-    //submitNewScene(oneMovieId)
+    
 
   })
 
@@ -64,29 +64,37 @@ function addNewSceneForm(movie) {
   let addSceneCard = document.querySelector('#oneMovieCard')
   let addSceneToggle = document.querySelector('#add-scene')
 
-  console.log("IN SUBMITNEWSCENE! ", addSceneToggle)
   addSceneToggle.addEventListener('click', (event) => {
+    document.querySelector('#allScenesCards').innerHTML = ''
     addSceneCard.innerHTML += templates.sceneAddTemplate()
     let addSceneForm = document.querySelector('#addSceneForm')
     addSceneForm.addEventListener('submit', (event) => {
       event.preventDefault()
       const body = {
         description: event.target.sceneDescription.value,
-        address: event.target.sceneLocation.value
-      } //${baseURL}/api/movies/${movie}/scenes
+        address: event.target.sceneLocation.value,
+        photo: event.target.scenePhoto.value
+      } 
       return axios(`${baseURL}/api/movies/${movie}/scenes`, {
-          headers: {
-            authorization: `Bearer ${localStorage.getItem('token')}`
-          },
+          headers: { authorization: `Bearer ${localStorage.getItem('token')}`}, 
           data: body,
           method: 'POST'
-        })
-        .then(response => {
-          getAllScenes(movie)
+      }, oneMovie(movie))
+      .then(() => {
+          console.log('POSTED TO SCENES!')
 
         })
     })
+
+    let cancelSceneBtn = document.querySelector('#cancel-scene')
+    cancelSceneBtn.addEventListener('click', (event) => {
+      event.preventDefault()
+      console.log('IN CANCEL')
+      oneMovie(movie)
+    })
+
   })
+
 }
 
 
