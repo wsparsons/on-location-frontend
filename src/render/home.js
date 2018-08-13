@@ -50,10 +50,7 @@ function renderOneMovie(movie) {
   let viewScenesButton = document.querySelector('#view-scenes')
   viewScenesButton.addEventListener('click', function() {
     let oneMovieId = viewScenesButton.getAttribute('data')
-    console.log(oneMovieId);
     getAllScenes(oneMovieId)
-    
-
   })
 
 }
@@ -98,15 +95,13 @@ function addNewSceneForm(movie) {
 }
 
 
-// function submitNewScene
-
 function getAllScenes(oneMovieId) {
   axios.get(`${baseURL}/api/movies/${oneMovieId}/scenes`)
     .then(response => {
-      // console.log(response);
+     
       let allScenes = response.data.scenes
-      // console.log(scenes);
       renderAllScenes(allScenes)
+
     })
 }
 
@@ -135,6 +130,10 @@ function renderAllScenes(scenes) {
             deleteScene(cardMovieId, cardSceneId)
           })
         })
+      })
+      .then((response) => {
+        console.log('DEL RESP: ', response)
+        //getAllScenes(scene.movie_id)
       })
 }
 
