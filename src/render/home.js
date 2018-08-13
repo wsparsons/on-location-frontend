@@ -1,5 +1,6 @@
 const templates = require('../templates/templates')
 const moment = require('moment')
+const deleteScene = require('../requests/scenes').deleteScene
 
 
 function allMovies() {
@@ -49,15 +50,12 @@ function renderOneMovie(movie) {
   let viewScenesButton = document.querySelector('#view-scenes')
   viewScenesButton.addEventListener('click', function() {
     let oneMovieId = viewScenesButton.getAttribute('data')
-    console.log(oneMovieId);
     getAllScenes(oneMovieId)
-    
-
   })
 
 }
 
-  
+
 
 function addNewSceneForm(movie) {
   let addSceneCard = document.querySelector('#oneMovieCard')
@@ -74,9 +72,7 @@ function addNewSceneForm(movie) {
         address: event.target.sceneLocation.value,
         photo: event.target.scenePhoto.value
       } 
-
-      return axios(`${baseURL}/api/movies/${movie}/scenes`, 
-      {
+      return axios(`${baseURL}/api/movies/${movie}/scenes`, {
           headers: { authorization: `Bearer ${localStorage.getItem('token')}`}, 
           data: body,
           method: 'POST'
@@ -99,15 +95,13 @@ function addNewSceneForm(movie) {
 }
 
 
-// function submitNewScene
-
 function getAllScenes(oneMovieId) {
   axios.get(`${baseURL}/api/movies/${oneMovieId}/scenes`)
     .then(response => {
-      // console.log(response);
+     
       let allScenes = response.data.scenes
-      // console.log(scenes);
       renderAllScenes(allScenes)
+
     })
 }
 
@@ -127,8 +121,23 @@ function renderAllScenes(scenes) {
       })
       .then(response => {
         document.querySelector('#allScenesCards').innerHTML = response.join('')
-      })
-}
+        const deleteButtons = document.querySelectorAll('#delete-button')
+        deleteButtons.forEach((e) => {''
+          e.addEventListener('click', () => {
+            let cardMovieId = e.getAttribute("data-movie")
+            let cardSceneId = e.getAttribute("data")
+            console.log('MOVIEID IS: ', cardMovieId)
+            deleteScene(cardMovieId, cardSceneId)
+            
+          })
+
+        })
+
+
+      }).then((id)=> console.log(id)) 
+
+  }
+
 
 
 

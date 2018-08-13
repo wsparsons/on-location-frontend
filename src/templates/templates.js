@@ -111,7 +111,7 @@ const sceneCardTemplate = (scene, photo) => {
           <p class="card-text"><span class="font-weight-bold">Description: </span>${scene.description}</p>
           <p class="card-text"><span class="font-weight-bold">Address: </span>${scene.address}</p>
           <button data="${scene.id}" type="button" class="btn btn-outline-info btn-sm">Edit</button>
-          <button data="${scene.id}" type="button" class="btn btn-outline-danger btn-sm" >Delete</button>
+          <button data="${scene.id}" data-movie="${scene.movie_id}" id="delete-button" type="button" class="btn btn-outline-danger btn-sm" >Delete</button>
         </div>
         <div class="card-footer">
           <small class="text-muted">${scene.created_at === scene.updated_at ? 'Created ' + moment(scene.created_at).toNow(true) : 'Last updated ' + moment(scene.updated_at).toNow(true)} ago</small>
@@ -186,8 +186,8 @@ const sceneAddTemplate = () => {
           <span id="addScene"></span>
         </div>`
     }
-    
-    
+
+
 module.exports = {
   loginTemplate,
   registerTemplate,
